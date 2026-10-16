@@ -8,6 +8,9 @@
   <meta name="description" content="臺灣行動支付（twMP）串聯金融機構、商家與產業夥伴，從購物、轉帳、繳費、繳稅到數位券，攜手拓展行動支付的更多可能。">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;display=swap">
   <style>
     /* 基礎與版面：自訂樣式也支援 CDN 暫時無法載入的情況。 */
     :root{
@@ -82,6 +85,25 @@
     @media(max-width:900px){.product-grid{grid-template-columns:1fr}.product-card{padding:28px}}
     @media(max-width:640px){.product-grid{gap:18px}.product-card{padding:25px}.product-card h3{font-size:20px}}
     @media(prefers-reduced-motion:reduce){.product-card:hover{transform:none}}
+    /* 介紹影片：保持原始 16:9 比例，字幕與畫面完整呈現。 */
+    .intro-film{background:linear-gradient(180deg,var(--surface),var(--surface-tint) 55%,var(--surface));border-top:1px solid var(--line)}
+    .intro-film .section-heading{align-items:center}
+    .intro-film .section-heading>p{max-width:340px;font-size:16px;line-height:1.9}
+    .film-frame{margin:0;padding:12px;border:1px solid var(--line-strong);border-radius:26px;background:var(--surface);box-shadow:0 24px 64px var(--shadow)}
+    .film-screen{position:relative;overflow:hidden;border-radius:16px;background:var(--paper);aspect-ratio:16/9}
+    .film-screen video{display:block;width:100%;height:100%;object-fit:contain;background:var(--paper)}
+    .film-resume{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:14px 24px;border:1px solid var(--brand-soft);border-radius:999px;background:var(--action);color:var(--surface);box-shadow:0 8px 28px var(--shadow-strong);font-size:16px;font-weight:600;white-space:nowrap;cursor:pointer}
+    .film-resume .icon{width:20px;height:20px;fill:currentColor;stroke:none}
+    .film-resume:hover{background:var(--action-hover)}
+    .film-caption{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:21px 15px 10px}
+    .film-caption-title{display:flex;align-items:center;gap:14px;min-width:0}
+    .film-caption-mark{display:grid;place-items:center;flex-shrink:0;width:44px;height:44px;border-radius:13px;background:var(--brand-soft);color:var(--action)}
+    .film-caption strong{display:block;font-size:17px;font-weight:600}
+    .film-caption p{margin-top:4px;font-size:14px;line-height:1.85}
+    .film-format{display:inline-flex;align-items:center;gap:8px;flex-shrink:0;padding:7px 12px;border:1px solid var(--line);border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--action);background:var(--surface)}
+    .film-format:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+    .film-status{padding:8px 15px 5px;color:var(--action);font-size:14px}
+    @media(max-width:640px){.film-frame{padding:7px;border-radius:18px}.film-screen{border-radius:12px}.film-caption{align-items:flex-start;padding:16px 9px 10px;gap:12px;flex-wrap:wrap}.film-caption-mark{width:38px;height:38px}.film-caption-title{gap:11px}.film-caption strong{font-size:16px}.film-caption p{font-size:13px}.film-format{margin-left:49px;font-size:11px}.film-resume{min-height:48px;font-size:14px;padding:11px 18px}.intro-film .section-heading>p{font-size:15px}}
     /* 聯絡我：社群聯絡與需求表單 */
     .contact-me{background:linear-gradient(180deg,var(--paper),var(--surface))}
     .contact-me-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:stretch}
@@ -103,6 +125,57 @@
     @media(max-width:640px){.contact-me-layout{gap:20px}.social-panel,.request-panel{padding:25px}.social-links{gap:10px}.social-link{padding:12px;gap:8px}.social-brand{width:30px;height:34px;font-size:26px}.social-label strong{font-size:14px}.social-label small{font-size:10px}}
     @media(max-width:360px){.social-links{grid-template-columns:1fr}}
     @media(prefers-reduced-motion:reduce){a.social-link:hover,a.social-link:focus-visible{transform:none}}
+    /* 聯絡資料與需求表單 */
+    .contact-me-layout{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:start}
+    .contact-details{margin:24px 0 0}
+    .contact-details>div{padding:17px 0;border-bottom:1px solid var(--line)}
+    .contact-details>div:last-child{border-bottom:0}
+    .contact-details dt{display:flex;align-items:center;gap:11px;color:var(--muted);font-size:13px;font-weight:500}
+    .contact-details dt i{width:22px;text-align:center;color:var(--action);font-size:17px}
+    .contact-details dd{margin:6px 0 0 33px;font-size:16px;line-height:1.85;overflow-wrap:anywhere}
+    .contact-details a:hover{text-decoration:underline;text-underline-offset:4px;color:var(--action)}
+    .contact-details address{font-style:normal}
+    .contact-social-title{margin:30px 0 0;font-size:18px;font-weight:600;line-height:1.5}
+    .social-panel .social-links{margin-top:16px}
+    .inquiry-panel{min-width:0;padding:36px;border:1px solid var(--line-strong);border-radius:20px;background:linear-gradient(160deg,var(--surface-tint),var(--surface) 24%);box-shadow:0 16px 48px var(--shadow)}
+    .inquiry-panel h3{margin-bottom:12px;font-size:25px;font-weight:600}
+    .inquiry-intro{font-size:16px;line-height:1.9}
+    .inquiry-form{margin-top:24px}
+    .inquiry-form-note{margin-bottom:20px;font-size:13px;line-height:1.8}
+    .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 18px}
+    .form-field{min-width:0}.form-field--full{grid-column:1/-1}
+    .form-field label{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:9px;font-size:15px;font-weight:600;line-height:1.7}
+    .form-required{padding:1px 6px;border-radius:5px;background:var(--brand-soft);color:var(--action);font-size:11px;font-weight:500}
+    .form-field input,.form-field select,.form-field textarea,.inquiry-copy textarea{display:block;width:100%;min-width:0;min-height:48px;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit;font-size:16px;line-height:1.7;letter-spacing:normal;transition:border-color .2s,box-shadow .2s}
+    .form-field textarea,.inquiry-copy textarea{min-height:160px;resize:vertical}
+    .form-field input::placeholder,.form-field textarea::placeholder{color:var(--muted);opacity:1;font-size:14px}
+    .form-field select{padding-right:32px;cursor:pointer}
+    .form-field input:hover,.form-field select:hover,.form-field textarea:hover{border-color:var(--line-strong)}
+    .form-field input:focus-visible,.form-field select:focus-visible,.form-field textarea:focus-visible,.inquiry-copy textarea:focus-visible{border-color:var(--action);outline:2px solid var(--action);outline-offset:3px;box-shadow:0 0 0 5px var(--shadow)}
+    .form-field :is(input,select,textarea):user-invalid{border-color:var(--action)}
+    .form-hint{margin-top:8px;font-size:13px;line-height:1.8}
+    .form-actions{margin-top:26px}.form-actions .btn{cursor:pointer}
+    .inquiry-delivery-note{margin-top:12px;font-size:13px;line-height:1.85}
+    .inquiry-delivery-note a,.inquiry-alternative a{color:var(--action);text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere}
+    .inquiry-feedback{margin-top:20px;padding:14px 16px;border:1px solid var(--line-strong);border-radius:12px;background:var(--brand-soft);color:var(--ink);font-size:14px;line-height:1.85}
+    .inquiry-copy{margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
+    .inquiry-copy summary{font-size:14px;font-weight:600;cursor:pointer;color:var(--action)}
+    .inquiry-copy textarea{margin-top:14px;font-size:14px;line-height:1.85}
+    .inquiry-copy .btn{margin-top:12px}
+    .inquiry-alternative{margin-top:26px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;line-height:1.85}
+    @media(max-width:900px){.contact-me-layout{grid-template-columns:1fr}.inquiry-panel{padding:30px}}
+    @media(max-width:640px){.inquiry-panel{padding:25px}.form-grid{grid-template-columns:1fr;gap:20px}.form-actions .btn{width:100%}.contact-details dd{font-size:15px}.inquiry-panel h3{font-size:23px}}
+    .inquiry-fields{min-width:0;margin:0;padding:0;border:0}.inquiry-fields:disabled{opacity:.7}
+    .form-actions .btn:disabled{cursor:wait;opacity:.7;transform:none;box-shadow:none}
+    .inquiry-form[data-sent="true"] .form-actions .btn:disabled{cursor:default}
+    .inquiry-success{position:fixed;width:min(480px,calc(100% - 32px));padding:42px 30px 32px;text-align:center;border-radius:26px;background:linear-gradient(155deg,var(--surface),var(--surface-tint));overflow:auto}
+    .inquiry-success .brand-dialog-close{position:absolute;right:14px;top:14px;width:36px;height:36px}
+    .inquiry-success-mark{display:grid;place-items:center;width:74px;height:74px;margin:0 auto 24px;border:1px solid var(--line-strong);border-radius:50%;background:var(--brand-soft);color:var(--action);box-shadow:0 0 0 10px var(--surface)}
+    .inquiry-success-mark .icon{width:36px;height:36px;stroke-width:1.8}
+    .inquiry-success h2{font-size:24px;line-height:1.65;text-wrap:balance}
+    .inquiry-success>p{margin:16px auto 25px;max-width:340px;font-size:15px;line-height:1.9}
+    .inquiry-success .btn{min-width:180px;cursor:pointer}
+    @media(max-width:640px){.inquiry-success{padding:40px 24px 28px}.inquiry-success h2{font-size:22px}}
     /* 聯絡與頁尾 */
     .contact{padding-block:35px 80px}.contact-panel{position:relative;overflow:hidden;isolation:isolate;border:1px solid var(--line-strong);border-radius:24px;padding:65px;display:flex;align-items:center;justify-content:space-between;gap:50px;background:linear-gradient(110deg,var(--brand-soft),var(--surface-tint) 75%,var(--accent-soft))}.contact-panel:after{content:"";position:absolute;right:-90px;top:-100px;width:350px;height:350px;border:1px solid color-mix(in srgb,var(--brand) 16%,transparent);border-radius:50%;z-index:-1;box-shadow:0 0 0 35px color-mix(in srgb,var(--brand) 4%,transparent),0 0 0 70px color-mix(in srgb,var(--brand) 3%,transparent);pointer-events:none}.contact-panel h2{max-width:680px;font-size:clamp(25px,2.8vw,36px)}.contact-panel p{max-width:620px;font-size:14px;margin-top:20px}.contact-panel .action{flex-shrink:0}.footer{border-top:1px solid var(--line);padding:40px 0 25px}.footer-main{display:flex;justify-content:space-between;gap:30px;align-items:center}.footer-nav{display:flex;flex-wrap:wrap;gap:23px;font-size:12px;color:var(--muted)}.footer-bottom{display:flex;justify-content:space-between;gap:16px;font-size:10px;color:var(--muted);letter-spacing:.03em;margin-top:35px;padding-top:22px;border-top:1px solid var(--line)}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.reveal-pending{opacity:0;transform:translateY(18px)}.reveal{transition:opacity .65s,transform .65s}.reveal.is-visible{opacity:1;transform:none}@keyframes flow{to{stroke-dashoffset:-632}}@keyframes blink{50%{opacity:0}}
     /* 響應式：375 / 768 / 1440px */
@@ -110,6 +183,15 @@
     @media(max-width:1100px){.nav-list{gap:14px}.nav-list a{font-size:12px}.header-row{gap:16px}.wordmark span{display:none}.hero-layout{gap:24px}.hero h1{font-size:clamp(31px,3.5vw,43px)}.app-chip{font-size:12px;padding:12px;gap:8px}.about-top{gap:50px}.scenario-layout{gap:45px}.contact-panel{padding:45px;gap:30px}.contact-panel .btn{padding-inline:18px}}
     @media(max-width:900px){.wrap{width:calc(100% - 48px)}.header-row{min-height:80px;flex-wrap:wrap;gap:0}.wordmark span{display:block}.header-cta{display:none}.main-nav{width:100%;padding-bottom:18px}.nav-list{flex-wrap:wrap;gap:8px 24px}.nav-list a{display:block;padding-block:10px;font-size:14px}.js .menu-toggle{display:block}.js .main-nav:not(.is-open){display:none}.header{position:relative}.js .header{position:sticky}.hero-layout{grid-template-columns:1fr 1fr;min-height:600px;gap:15px;padding-block:65px}.hero h1{font-size:30px}.hero-copy{font-size:14px}.hero-actions{gap:10px}.hero-actions .btn{padding:10px 15px;font-size:13px}.network-hub span{font-size:9px}.app-chip{font-size:11px;padding:10px;gap:6px}.app-chip .icon{width:20px;height:20px}.network-caption{font-size:8px}.section{padding-block:82px}.about-top{gap:35px}.about-copy{font-size:14px}.values{margin-top:45px}.value{padding-right:18px}.value+.value{padding-left:18px}.value p{font-size:13px}.service-card{padding:24px}.scenario-layout{grid-template-columns:1fr;gap:35px}.scenario-aside .section-title{max-width:none}.scenario-aside .section-intro{max-width:600px}.article-grid{gap:16px}.article-body{padding:20px}.article-body h3{font-size:17px}.contact-panel{display:block}.contact-panel .action{margin-top:28px}.footer-main{align-items:start}.footer-nav{max-width:300px;justify-content:flex-end}}
     @media(max-width:640px){.wrap{width:calc(100% - 40px)}.hero-layout{grid-template-columns:1fr;padding-block:48px 25px;gap:25px}.hero h1{font-size:clamp(29px,7.8vw,42px)}.hero-copy{font-size:15px;margin-top:22px}.hero-actions{margin-top:26px;gap:14px}.hero-actions .btn{padding:12px 20px;font-size:14px}.hero-note{margin-top:18px}.eyebrow{margin-bottom:18px;font-size:10px}.network{width:min(100%,440px);justify-self:center}.network-hub strong{font-size:48px}.network-hub span{font-size:10px}.app-chip{font-size:12px;padding:12px;gap:8px}.network-caption{font-size:9px}.hero-bottom{font-size:9px;letter-spacing:.04em;flex-wrap:wrap;gap:7px;padding-block:16px}.section{padding-block:65px}.about-top{grid-template-columns:1fr;gap:25px}.about-copy{font-size:15px}.values{grid-template-columns:1fr 1fr;margin-top:35px}.value{padding:25px 18px 25px 0}.value+.value{padding-left:0;border-left:0}.value:nth-child(even){padding-left:20px;border-left:1px solid var(--line)}.value:nth-child(n+3){border-top:1px solid var(--line)}.value .value-label{margin-bottom:15px}.value h3{font-size:20px}.section-heading{display:block;margin-bottom:30px}.section-heading>p{margin-top:18px;max-width:none}.service-grid{grid-template-columns:1fr;gap:14px}.service-card,.service-card:nth-child(n+4){grid-column:auto;min-height:0;padding:25px}.service-icon{margin-bottom:18px}.service-card h3{font-size:20px}.scenario-row{grid-template-columns:25px 1fr 26px;gap:12px;padding-block:26px}.scenario-row h3{font-size:21px}.scenario-row p{font-size:14px}.article-grid{grid-template-columns:1fr;gap:24px}.article-art{height:150px}.article-body{padding:25px}.article-body h3{font-size:20px}.contact{padding-block:10px 55px}.contact-panel{padding:34px 25px;border-radius:18px}.contact-panel h2{font-size:27px;line-height:1.55}.footer-main{flex-direction:column;gap:28px}.footer-nav{justify-content:flex-start;max-width:none;gap:12px 20px}.footer-bottom{flex-direction:column;margin-top:25px}.status{font-size:8px}.nav-list{display:grid;grid-template-columns:1fr 1fr}.header{position:sticky}html{scroll-padding-top:100px}section[id]{scroll-margin-top:100px}}
+    /* 全站閱讀層級：繁中無襯線字體，正文保持 16px，輔助資訊亦保留足夠字級。 */
+    body{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;font-weight:400;line-height:1.9;letter-spacing:.01em;text-rendering:optimizeLegibility}
+    .hero h1{font-weight:700;letter-spacing:-.035em}.section-title{font-weight:700;letter-spacing:-.025em}
+    .hero-copy,.about-with-photo .about-copy,.value p,.section-heading>p,.service-card p,.scenario-row p,.article-body p,.product-card p,.social-panel>p,.request-panel>p,.contact-panel p{font-size:16px;line-height:1.95}
+    .nav-list a,.footer-nav{font-size:14px}.wordmark span{font-size:12px}.btn{font-size:15px;font-weight:600}
+    .hero-note,.since,.scenario-foot,.request-note,.social-label small,.footer-bottom,.about-visual figcaption p,.brand-dialog-footer p{font-size:13px;line-height:1.85}
+    .eyebrow{font-size:12px;letter-spacing:.12em}.hero-bottom,.network-caption,.value small,.service-number,.notice,.article-state{font-size:12px;letter-spacing:.04em}.status{font-size:11px}
+    @media(max-width:900px){.nav-list a{font-size:15px}}
+    @media(max-width:640px){.hero-copy,.about-with-photo .about-copy,.value p,.section-heading>p,.service-card p,.scenario-row p,.article-body p,.product-card p,.social-panel>p,.request-panel>p,.contact-panel p{font-size:16px;line-height:1.9}.hero-actions .btn{font-size:15px}.hero h1{letter-spacing:-.025em}.eyebrow{font-size:11px}.hero-bottom{font-size:12px}.network-caption{font-size:11px;letter-spacing:0}.social-label small{font-size:12px}.footer-nav{font-size:14px}.footer-bottom{font-size:12px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal-pending{opacity:1;transform:none}.btn:hover,.service-card:hover,.article-card:hover{transform:none}}
   </style>
 </head>
@@ -133,7 +215,7 @@
     <div class="wrap header-row">
       <a class="wordmark" href="#home" aria-label="twMP 臺灣行動支付，回到首頁"><b>twMP</b><span>臺灣行動支付<br>串聯金融與生活</span></a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="開啟導覽選單" hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
-      <nav id="main-nav" class="main-nav" aria-label="主要導覽"><ul class="nav-list"><li><a href="#home">首頁</a></li><li><a href="#about">關於 twMP</a></li><li><a href="#services">服務應用</a></li><li><a href="#scenarios">合作情境</a></li><li><a href="#insights">品牌觀點</a></li><li><a href="#contact">聯絡我們</a></li></ul></nav>
+      <nav id="main-nav" class="main-nav" aria-label="主要導覽"><ul class="nav-list"><li><a href="#home">首頁</a></li><li><a href="#about">關於 twMP</a></li><li><a href="#services">服務應用</a></li><li><a href="#scenarios">合作情境</a></li><li><a href="#insights">品牌觀點</a></li><li><a href="#contact-me">聯絡我們</a></li></ul></nav>
       <div class="action header-cta"><a class="btn" data-booking href="https://calendar.app.google/CcbpNp2PvvPgWAyFA" target="_blank" rel="noopener noreferrer">洽談合作 <span class="arrow" aria-hidden="true">↗</span><span class="sr-only">（另開分頁）</span></a><span class="status" aria-hidden="true">Status: Ready to Connect</span></div>
     </div>
   </header>
@@ -219,17 +301,47 @@
         </div>
       </div>
     </section>
-    <!-- 08 聯絡我與需求表單 -->
+    <!-- 08 介紹影片 -->
+    <section id="introduction" class="section intro-film" aria-labelledby="intro-film-title">
+      <div class="wrap">
+        <div class="section-heading reveal">
+          <div><div class="eyebrow tracking-widest">06 / In Focus</div><h2 id="intro-film-title" class="section-title">用影像，走近專業交流。</h2></div>
+          <p>透過授課、討論與實務分享的片段，認識更多合作與交流的可能。</p>
+        </div>
+        <figure class="film-frame">
+          <div class="film-screen">
+            <video id="intro-video" width="1920" height="1080" autoplay muted loop playsinline controls preload="metadata" poster="assets/introduction-poster.jpg" aria-label="專業交流介紹影片" aria-describedby="intro-film-caption">
+              <source src="assets/introduction.mp4" type="video/mp4">
+              您的瀏覽器不支援影片播放，請<a href="assets/introduction.mp4">開啟介紹影片</a>。
+            </video>
+            <button class="film-resume" type="button" aria-controls="intro-video" hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 4 14 8-14 8V4Z"/></svg>播放介紹影片</button>
+          </div>
+          <figcaption id="intro-film-caption" class="film-caption">
+            <div class="film-caption-title"><span class="film-caption-mark" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3V9Z"/></svg></span><div><strong>從交流開始，看見更多可能</strong><p>預設靜音循環播放，可調整音量、暫停或切換全螢幕觀看。</p></div></div>
+            <span class="film-format">FULL HD · 1080P</span>
+          </figcaption>
+          <p class="film-status" role="status" hidden></p>
+        </figure>
+      </div>
+    </section>
+    <!-- 09 聯絡我與需求表單 -->
     <section id="contact-me" class="section contact-me" aria-labelledby="contact-me-title">
       <div class="wrap">
         <div class="section-heading reveal">
-          <div><div class="eyebrow tracking-widest">06 / Contact Me</div><h2 id="contact-me-title" class="section-title">聯絡我</h2></div>
+          <div><div class="eyebrow tracking-widest">07 / Contact Us</div><h2 id="contact-me-title" class="section-title">聯絡我們</h2></div>
           <p>從一則訊息開始，讓想法走向下一步。</p>
         </div>
         <div class="contact-me-layout">
           <div class="social-panel reveal">
-            <h3>透過社群與我聯繫</h3>
-            <p>歡迎加入 LINE，聊聊您的想法與合作需求。</p>
+            <h3>與我們取得聯繫</h3>
+            <p>從企業內訓、資料科學到系統建置，歡迎與我們討論您的需求。</p>
+            <dl class="contact-details">
+              <div><dt><i class="fa-regular fa-envelope" aria-hidden="true"></i>聯絡信箱</dt><dd><a href="mailto:steven410118@gmail.com.tw">steven410118@gmail.com.tw</a></dd></div>
+              <div><dt><i class="fa-solid fa-phone" aria-hidden="true"></i>電話</dt><dd><a href="tel:+886226308181;ext=218">(02)2630-8181 #218</a></dd></div>
+              <div><dt><i class="fa-solid fa-location-dot" aria-hidden="true"></i>地址</dt><dd><address>106021 台北市大安區羅斯福路三段 335 號 12 樓之二</address></dd></div>
+              <div><dt><i class="fa-regular fa-building" aria-hidden="true"></i>統一編號</dt><dd>54390700</dd></div>
+            </dl>
+            <h4 class="contact-social-title">透過社群與我們聯繫</h4>
             <ul class="social-links" aria-label="社群聯絡方式">
               <li>
                 <a class="social-link social-line" href="https://line.me/ti/p/IdX2HGpEVo" target="_blank" rel="noopener noreferrer">
@@ -259,19 +371,46 @@
               </li>
             </ul>
           </div>
-          <div class="request-panel reveal" aria-labelledby="request-form-title">
+          <div class="inquiry-panel reveal" aria-labelledby="request-form-title">
             <div class="request-icon"><i class="fa-solid fa-file-pen" aria-hidden="true"></i></div>
-            <h3 id="request-form-title">填寫需求表單</h3>
-            <p>將您的專案想法、需求與期待告訴我，讓後續交流更聚焦。</p>
-            <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdSZTTqKLr9KtYsFXZqAjVdumzUToU1k2YHvNifCHAlXh8hUg/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">填寫需求表單 <span class="arrow" aria-hidden="true">↗</span><span class="sr-only">（另開 Google 表單分頁）</span></a>
-            <small class="request-note">將在新分頁開啟 Google 表單。</small>
+            <h3 id="request-form-title">聊聊您的需求</h3>
+            <p class="inquiry-intro">留下您的想法與方便聯絡的時間，讓我們從一次有方向的交流開始。</p>
+            <form id="inquiry-form" class="inquiry-form" action="/api/contact" method="post" data-google-action="https://docs.google.com/forms/d/e/1FAIpQLSeCq5vcCjQBlWITixdB8W5OQleXJGxmbHub3qq8zQ843B3NSA/formResponse" aria-labelledby="request-form-title" aria-describedby="inquiry-form-note">
+              <p id="inquiry-form-note" class="inquiry-form-note">標示「必填」的欄位請務必填寫，其餘可依需要補充。</p>
+              <fieldset id="inquiry-fields" class="inquiry-fields"><legend class="sr-only">合作洽詢資料</legend>
+              <div class="form-grid">
+                <div class="form-field"><label for="inquiry-name">您的姓名／稱呼 <span class="form-required">必填</span></label><input id="inquiry-name" name="entry.588998168" type="text" autocomplete="name" maxlength="80" placeholder="請問怎麼稱呼您？" required></div>
+                <div class="form-field"><label for="inquiry-email">聯絡電子信箱 <span class="form-required">必填</span></label><input id="inquiry-email" name="entry.476214014" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="name@example.com" required></div>
+                <div class="form-field"><label for="inquiry-service">您的需求 <span class="form-required">必填</span></label><select id="inquiry-service" name="entry.1610329698" required><option value="" disabled selected>請選擇需求類型</option><option value="企業內訓">企業內訓</option><option value="資料科學專案">資料科學專案</option><option value="系統建置">系統建置</option><option value="其他／希望先討論">其他／希望先討論</option></select></div>
+                <div class="form-field"><label for="inquiry-stage">目前需求階段</label><select id="inquiry-stage" name="entry.1646642689"><option value="尚未確定">請選擇需求階段</option><option value="初步了解中">初步了解中</option><option value="需求規劃中">需求規劃中</option><option value="已有明確需求">已有明確需求</option><option value="需要協助釐清方向">需要協助釐清方向</option></select></div>
+                <div class="form-field form-field--full"><label for="inquiry-description">需求簡介 <span class="form-required">必填</span></label><textarea id="inquiry-description" name="entry.473479111" rows="6" maxlength="1500" placeholder="請描述您的目標、希望解決的問題，以及預期時程。若是企業內訓，也可補充對象、人數與主題。" aria-describedby="inquiry-description-hint" required></textarea><p id="inquiry-description-hint" class="form-hint">可填寫至多 1,500 字，先提供大致方向也可以。</p></div>
+                <div class="form-field"><label for="inquiry-day">適合聯絡的日期</label><select id="inquiry-day" name="entry.1091995575"><option value="平日或週末皆可">平日或週末皆可</option><option value="平日（週一至週五）">平日（週一至週五）</option><option value="週末（週六、週日）">週末（週六、週日）</option></select></div>
+                <div class="form-field"><label for="inquiry-time">適合聯絡的時間</label><select id="inquiry-time" name="contact_time" aria-describedby="inquiry-time-hint"><option value="時間彈性，可再約定">時間彈性，可再約定</option><option value="上午 09:00–12:00">上午 09:00–12:00</option><option value="下午 13:30–17:30">下午 13:30–17:30</option><option value="晚間 18:00–20:30">晚間 18:00–20:30</option><option value="其他時段">其他時段（請補充）</option></select></div>
+                <div id="inquiry-custom-time-field" class="form-field form-field--full" hidden><label for="inquiry-custom-time">請補充方便聯絡的時間 <span class="form-required">必填</span></label><input id="inquiry-custom-time" name="custom_time" type="text" maxlength="120" placeholder="例如：週三下午 15:00 後，或希望先以電子郵件聯繫" disabled></div>
+                <div class="form-field form-field--full"><label for="inquiry-date">指定聯絡日期（選填）</label><input id="inquiry-date" name="preferred_date" type="date" min="1900-01-01" max="2100-12-31" aria-describedby="inquiry-date-hint"><p id="inquiry-date-hint" class="form-hint">若有明確日期可在此指定；方便聯絡的時段可由上方選擇。</p></div>
+              </div>
+              <p id="inquiry-time-hint" class="form-hint">以上為台北時間，僅作為您的聯絡偏好；實際時間將另行確認。</p>
+              </fieldset>
+              <div class="form-actions"><button id="inquiry-submit" class="btn" type="submit" disabled>送出合作需求 <span class="arrow" aria-hidden="true">↗</span></button><p class="inquiry-delivery-note">按下送出後，資料將交由 Google 表單接收；送出期間請稍候，無須離開本頁。</p></div>
+              <noscript><p class="form-hint">請啟用 JavaScript 使用本頁表單，或使用下方 Google 需求表單聯繫。</p></noscript>
+            </form>
+            <p id="inquiry-feedback" class="inquiry-feedback" role="status" hidden></p>
+            <details id="inquiry-copy" class="inquiry-copy" hidden><summary>查看或複製需求內容</summary><textarea id="inquiry-copy-text" rows="8" readonly aria-label="已整理的需求內容"></textarea><button id="inquiry-copy-button" class="btn secondary" type="button">複製需求內容</button></details>
+            <p class="inquiry-alternative">也可以使用 <a href="https://docs.google.com/forms/d/e/1FAIpQLSeCq5vcCjQBlWITixdB8W5OQleXJGxmbHub3qq8zQ843B3NSA/viewform" target="_blank" rel="noopener noreferrer">Google 需求表單<span class="sr-only">（另開分頁）</span></a> 聯繫我們。</p>
           </div>
         </div>
       </div>
     </section>
-    <!-- 09 預約合作交流 -->
-    <section id="contact" class="contact" aria-labelledby="contact-title"><div class="wrap"><div class="contact-panel reveal"><div><div class="eyebrow tracking-widest">07 / Let's Connect</div><h2 id="contact-title" class="section-title">讓下一個合作可能，<br>從一次交流開始。</h2><p>無論您來自金融機構、商家或其他產業，我們期待與您交流需求，探索行動支付與生活場景的合作機會。</p></div><div class="action"><a class="btn" data-booking href="https://calendar.app.google/CcbpNp2PvvPgWAyFA" target="_blank" rel="noopener noreferrer">預約合作交流 <span class="arrow" aria-hidden="true">↗</span><span class="sr-only">（另開分頁）</span></a><span class="status" aria-hidden="true">Status: Ready to Connect</span></div></div></div></section>
+    <!-- 10 預約合作交流 -->
+    <section id="contact" class="contact" aria-labelledby="contact-title"><div class="wrap"><div class="contact-panel reveal"><div><div class="eyebrow tracking-widest">08 / Let's Connect</div><h2 id="contact-title" class="section-title">讓下一個合作可能，<br>從一次交流開始。</h2><p>無論您來自金融機構、商家或其他產業，我們期待與您交流需求，探索行動支付與生活場景的合作機會。</p></div><div class="action"><a class="btn" data-booking href="https://calendar.app.google/CcbpNp2PvvPgWAyFA" target="_blank" rel="noopener noreferrer">預約合作交流 <span class="arrow" aria-hidden="true">↗</span><span class="sr-only">（另開分頁）</span></a><span class="status" aria-hidden="true">Status: Ready to Connect</span></div></div></div></section>
   </main>
+  <dialog id="inquiry-success" class="brand-dialog inquiry-success" aria-labelledby="inquiry-success-title" aria-describedby="inquiry-success-description">
+    <button class="brand-dialog-close" type="button" aria-label="關閉送出成功視窗" data-close-success><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    <span class="inquiry-success-mark" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+    <h2 id="inquiry-success-title">需求已送出，我們將盡快與您聯絡！</h2>
+    <p id="inquiry-success-description">感謝您分享需求與想法，我們期待與您展開下一步的交流。</p>
+    <button class="btn" type="button" data-close-success autofocus>返回網站</button>
+  </dialog>
   <dialog id="brand-image-dialog" class="brand-dialog" aria-labelledby="brand-dialog-title" aria-describedby="brand-dialog-description">
     <header class="brand-dialog-header">
       <div><p class="brand-dialog-kicker">twMP / BRAND VISION</p><h2 id="brand-dialog-title">連結金融，便利生活</h2></div>
@@ -280,7 +419,7 @@
     <figure class="brand-dialog-media"><img src="assets/twmp-connected-life.png" width="1536" height="1024" loading="lazy" decoding="async" alt="以手機串聯商店、金融機構與居家繳費，呈現連結金融、便利生活的品牌形象。"></figure>
     <footer class="brand-dialog-footer"><p id="brand-dialog-description">從日常消費到生活服務，讓每一次支付串起更多可能。</p><span class="brand-dialog-shortcut" aria-hidden="true"><kbd>Esc</kbd>關閉視窗</span></footer>
   </dialog>
-  <footer class="footer"><div class="wrap"><div class="footer-main"><a class="wordmark" href="#home" aria-label="twMP 臺灣行動支付，回到首頁"><b>twMP</b><span>臺灣行動支付股份有限公司</span></a><nav class="footer-nav" aria-label="頁尾導覽"><a href="#home">首頁</a><a href="#about">關於 twMP</a><a href="#services">服務應用</a><a href="#scenarios">合作情境</a><a href="#insights">品牌觀點</a><a href="#contact">聯絡我們</a></nav></div><div class="footer-bottom"><span>© <span id="year">2026</span> 臺灣行動支付股份有限公司</span><span>串聯金融與生活，拓展行動支付的更多可能。</span></div></div></footer>
+  <footer class="footer"><div class="wrap"><div class="footer-main"><a class="wordmark" href="#home" aria-label="twMP 臺灣行動支付，回到首頁"><b>twMP</b><span>臺灣行動支付股份有限公司</span></a><nav class="footer-nav" aria-label="頁尾導覽"><a href="#home">首頁</a><a href="#about">關於 twMP</a><a href="#services">服務應用</a><a href="#scenarios">合作情境</a><a href="#insights">品牌觀點</a><a href="#contact-me">聯絡我們</a></nav></div><div class="footer-bottom"><span>© <span id="year">2026</span> 臺灣行動支付股份有限公司</span><span>串聯金融與生活，拓展行動支付的更多可能。</span></div></div></footer>
   <script>
     'use strict';
     // 常用設定集中於此；HTML 的同址 href 為停用 JavaScript 時的備援。
@@ -368,6 +507,148 @@
       if (revealObserver) revealObserver.disconnect();
       revealItems.forEach(item => { item.classList.remove('reveal-pending'); item.classList.add('is-visible'); });
     });
+
+    // 聯絡表單：經同源端點確認 Google 已接收後，留在本頁顯示成功視窗。
+    (function initInquiryForm(){
+  const form=document.getElementById('inquiry-form');
+  const fields=document.getElementById('inquiry-fields');
+  const submitButton=document.getElementById('inquiry-submit');
+  const timeSelect=document.getElementById('inquiry-time');
+  const customTimeField=document.getElementById('inquiry-custom-time-field');
+  const customTimeInput=document.getElementById('inquiry-custom-time');
+  const feedback=document.getElementById('inquiry-feedback');
+  const copyDetails=document.getElementById('inquiry-copy');
+  const copyText=document.getElementById('inquiry-copy-text');
+  const successDialog=document.getElementById('inquiry-success');
+  let submitting=false,confirmed=false,successClosing=false,successAnimation;
+  let savedOverflow='',savedPadding='';
+  function syncCustomTime(){const custom=timeSelect.value==='其他時段';customTimeField.hidden=!custom;customTimeInput.disabled=!custom;customTimeInput.required=custom;if(!custom)customTimeInput.setCustomValidity('');}
+  function edited(event){if(submitting)return;if(typeof event.target.setCustomValidity==='function')event.target.setCustomValidity('');feedback.hidden=true;copyDetails.hidden=true;confirmed=false;form.dataset.sent='false';submitButton.disabled=false;submitButton.textContent='送出合作需求';}
+  timeSelect.addEventListener('change',syncCustomTime);
+  form.addEventListener('input',edited);form.addEventListener('change',edited);
+  function showSuccess(){
+    feedback.textContent='需求已送出，我們將盡快與您聯絡！';feedback.hidden=false;
+    if(typeof successDialog.showModal!=='function')return;
+    const root=document.documentElement;
+    savedOverflow=root.style.overflow;savedPadding=root.style.paddingRight;
+    const gap=Math.max(0,window.innerWidth-root.clientWidth);const padding=parseFloat(getComputedStyle(root).paddingRight)||0;
+    successDialog.showModal();root.style.overflow='hidden';if(gap)root.style.paddingRight=`${padding+gap}px`;
+    if(!motionMedia.matches&&typeof successDialog.animate==='function')successAnimation=successDialog.animate([{opacity:0,transform:'translateY(22px) scale(.96)'},{opacity:1,transform:'translateY(0) scale(1)'}],{duration:400,easing:'cubic-bezier(.22,1,.36,1)'});
+  }
+  function closeSuccess(){
+    if(!successDialog.open||successClosing)return;
+    successClosing=true;
+    const style=getComputedStyle(successDialog);const frame={opacity:style.opacity,transform:style.transform};
+    if(successAnimation)successAnimation.cancel();
+    if(motionMedia.matches||typeof successDialog.animate!=='function'){successDialog.close();return;}
+    successDialog.classList.add('is-closing');
+    successAnimation=successDialog.animate([frame,{opacity:0,transform:'translateY(12px) scale(.985)'}],{duration:180,easing:'ease-in',fill:'forwards'});
+    successAnimation.finished.then(()=>{if(successDialog.open)successDialog.close();}).catch(()=>{});
+  }
+  successDialog.querySelectorAll('[data-close-success]').forEach(button=>button.addEventListener('click',closeSuccess));
+  successDialog.addEventListener('cancel',event=>{event.preventDefault();closeSuccess();});
+  let outsideStart=false;
+  function outside(event){const rect=successDialog.getBoundingClientRect();return event.target===successDialog&&(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom);}
+  successDialog.addEventListener('pointerdown',event=>{outsideStart=outside(event);});
+  successDialog.addEventListener('pointerup',event=>{if(outsideStart&&outside(event))closeSuccess();outsideStart=false;});
+  successDialog.addEventListener('pointercancel',()=>{outsideStart=false;});
+  successDialog.addEventListener('close',()=>{if(successAnimation)successAnimation.cancel();successAnimation=undefined;successClosing=false;outsideStart=false;successDialog.classList.remove('is-closing');document.documentElement.style.overflow=savedOverflow;document.documentElement.style.paddingRight=savedPadding;const title=document.getElementById('request-form-title');title.setAttribute('tabindex','-1');title.focus({preventScroll:true});});
+  motionMedia.addEventListener('change',event=>{if(event.matches&&successAnimation){if(successClosing)successDialog.close();else successAnimation.cancel();}});
+  form.addEventListener('submit',async event=>{
+    event.preventDefault();if(submitting||confirmed)return;
+    syncCustomTime();
+    const name=document.getElementById('inquiry-name');const description=document.getElementById('inquiry-description');
+    name.setCustomValidity(name.value.trim()?'':'請填寫您的姓名或稱呼。');description.setCustomValidity(description.value.trim()?'':'請簡單描述您的需求。');
+    if(customTimeInput.required)customTimeInput.setCustomValidity(customTimeInput.value.trim()?'':'請補充方便聯絡的時間。');
+    if(!form.reportValidity())return;
+    const payload=Object.fromEntries(new FormData(form));
+    const time=payload.contact_time==='其他時段'?payload.custom_time:payload.contact_time;
+    copyText.value=[`姓名／稱呼：${payload['entry.588998168']}`,`聯絡信箱：${payload['entry.476214014']}`,`您的需求：${payload['entry.1610329698']}`,`需求階段：${payload['entry.1646642689']}`,`聯絡日期偏好：${payload['entry.1091995575']}`,`指定日期：${payload.preferred_date||'未指定'}`,`聯絡時段（台北時間）：${time}`,'','需求簡介：',payload['entry.473479111']].join('\n');
+    feedback.hidden=false;copyDetails.hidden=true;
+    if(!['http:','https:'].includes(window.location.protocol)){feedback.textContent='目前無法連線提交，內容已保留。請改用下方 Google 需求表單或聯絡信箱。';copyDetails.hidden=false;return;}
+    submitting=true;submitButton.disabled=true;fields.disabled=true;form.setAttribute('aria-busy','true');submitButton.textContent='正在送出…';feedback.textContent='正在送出您的需求，請稍候…';
+    const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),45000);
+    try{
+      const response=await fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload),signal:controller.signal,credentials:'same-origin'});
+      let result;try{result=await response.json();}catch{throw new Error('目前無法確認送出結果，內容已保留。請勿立即重複送出，可改以聯絡信箱向我們確認。');}
+      if(!response.ok||result.ok!==true||result.confirmed!==true)throw new Error(result.message||'目前無法確認送出結果，內容已保留。請以聯絡信箱向我們確認。');
+      confirmed=true;form.dataset.sent='true';showSuccess();
+    }catch(error){feedback.hidden=false;feedback.textContent=error.name==='AbortError'?'等候回覆逾時，暫時無法確認送出結果。內容已保留，請勿立即重送，可改以聯絡信箱確認。':(error instanceof TypeError?'目前無法確認送出結果，內容已保留。請確認網路連線，或改用 Google 需求表單與聯絡信箱。':error.message);copyDetails.hidden=false;copyDetails.open=true;
+    }finally{clearTimeout(timer);submitting=false;fields.disabled=false;submitButton.disabled=confirmed;submitButton.textContent=confirmed?'需求已送出':'送出合作需求';form.removeAttribute('aria-busy');}
+  });
+  document.getElementById('inquiry-copy-button').addEventListener('click',async()=>{feedback.hidden=false;try{if(!navigator.clipboard?.writeText)throw new Error('Clipboard unavailable');await navigator.clipboard.writeText(copyText.value);feedback.textContent='需求內容已複製，可供您備份或與我們確認。';}catch{copyDetails.open=true;copyText.focus();copyText.select();feedback.textContent='內容已選取，請使用系統的複製功能（Ctrl+C 或 ⌘C）。';}});
+  syncCustomTime();submitButton.disabled=false;
+})();
+
+    // 介紹影片：可見時自動播放，離開畫面時暫停；保留使用者手動暫停的選擇。
+    (() => {
+      const video = document.getElementById('intro-video');
+      const playButton = document.querySelector('.film-resume');
+      const status = document.querySelector('.film-status');
+      let visible = !('IntersectionObserver' in window);
+      let userPaused = false;
+      let managedPause = false;
+      let playPending = false;
+      let mediaFailed = false;
+      video.muted = true;
+      video.defaultMuted = true;
+
+      function canPlay() { return visible && !document.hidden; }
+      function pauseForVisibility() {
+        if (video.paused) return;
+        managedPause = true;
+        video.pause();
+      }
+      async function requestPlay() {
+        if (playPending || !video.paused || mediaFailed || userPaused || !canPlay()) return;
+        playPending = true;
+        try {
+          await video.play();
+          playButton.hidden = true;
+          status.hidden = true;
+        } catch (error) {
+          if (error.name !== 'AbortError' && canPlay() && !userPaused) {
+            playButton.hidden = false;
+            status.textContent = '瀏覽器尚未自動播放，請點擊「播放介紹影片」開始觀看。';
+            status.hidden = false;
+          }
+        } finally {
+          playPending = false;
+          if (!canPlay()) pauseForVisibility();
+        }
+      }
+      function syncPlayback() {
+        if (!canPlay()) pauseForVisibility();
+        else requestPlay();
+      }
+      video.addEventListener('play', () => {
+        userPaused = false;
+        playButton.hidden = true;
+        status.hidden = true;
+        if (!canPlay()) pauseForVisibility();
+      });
+      video.addEventListener('pause', () => {
+        if (managedPause) managedPause = false;
+        else userPaused = true;
+      });
+      video.addEventListener('loadeddata', syncPlayback);
+      video.addEventListener('error', () => {
+        mediaFailed = true;
+        playButton.hidden = true;
+        status.textContent = '影片暫時無法載入，請重新整理頁面後再試。';
+        status.hidden = false;
+      });
+      playButton.addEventListener('click', () => { userPaused = false; requestPlay(); });
+      document.addEventListener('visibilitychange', syncPlayback);
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(entries => {
+          visible = entries[0].isIntersecting && entries[0].intersectionRatio >= .15;
+          syncPlayback();
+        }, { threshold: [0, .15] });
+        observer.observe(video);
+      }
+      syncPlayback();
+    })();
 
     // 品牌圖片彈窗：原生焦點管理、柔和進退場、背景捲動鎖定與無 JavaScript 備援。
     (() => {
